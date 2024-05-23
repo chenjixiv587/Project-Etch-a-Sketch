@@ -3,13 +3,18 @@ const container = document.querySelector(".container")
 const containerWidth = container.offsetWidth;
 const askNumber = document.querySelector("button");
 let divPerSide = 16;
-let divWidth = containerWidth / divPerSide;
-let divHeight = containerWidth / divPerSide;
-for (let i = 0; i < divPerSide * divPerSide; i++) {
-    const div = document.createElement("div");
-    div.setAttribute("style", `width: ${divWidth}px; height: ${divHeight}px; border: 1px solid #ccc`);
-    container.appendChild(div);
+
+const generateNewDiv = (perSideDivs) => {
+    let divWidth = containerWidth / perSideDivs;
+    let divHeight = containerWidth / perSideDivs;
+    for (let i = 0; i < perSideDivs * perSideDivs; i++) {
+        const div = document.createElement("div");
+        div.setAttribute("style", `width: ${divWidth}px; height: ${divHeight}px; border: 1px solid #ccc`);
+        container.appendChild(div);
+    }
 }
+generateNewDiv(16);
+
 const generateRandomColor = () => {
     let red = Math.floor(Math.random() * 255 + 1);
     let green = Math.floor(Math.random() * 255 + 1);
@@ -39,6 +44,6 @@ askNumber.addEventListener("click", (e) => {
     }
     // Clear the origin divs
     Array.from(e.target.parentNode.nextElementSibling.children).forEach(div => div.remove());
-
+    generateNewDiv(perSide);
 
 })
