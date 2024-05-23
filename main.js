@@ -1,7 +1,8 @@
 // Add the divs
 const container = document.querySelector(".container")
 const containerWidth = container.offsetWidth;
-let divPerSide = 50;
+const askNumber = document.querySelector("button");
+let divPerSide = 16;
 let divWidth = containerWidth / divPerSide;
 let divHeight = containerWidth / divPerSide;
 for (let i = 0; i < divPerSide * divPerSide; i++) {
@@ -17,4 +18,20 @@ const generateRandomColor = () => {
 }
 container.addEventListener("mouseover", (e) => {
     e.target.style.backgroundColor = generateRandomColor();
+})
+
+askNumber.addEventListener("click", (e) => {
+    const askUserInput = document.createElement("confirm");
+    let numberOfPerSide = prompt("What is the number of squares per side");
+    while ((Number.isNaN(+numberOfPerSide) || +numberOfPerSide > 100 || +numberOfPerSide < 0) && numberOfPerSide !== null) {
+        alert("The number is not we need, try again!");
+        numberOfPerSide = prompt("What is the number of squares per side");
+    }
+    let perSide = +numberOfPerSide;
+    if (perSide === 0) {
+        perSide++;
+    }
+    // Clear the origin divs
+    
+
 })
