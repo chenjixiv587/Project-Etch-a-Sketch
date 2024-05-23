@@ -3,19 +3,14 @@ const container = document.querySelector(".container")
 const containerWidth = container.offsetWidth;
 const askNumber = document.querySelector("button");
 let divPerSide = 16;
+let divOpacity = 0;
 const generateRandomColor = () => {
     let red = Math.floor(Math.random() * 255 + 1);
     let green = Math.floor(Math.random() * 255 + 1);
     let blue = Math.floor(Math.random() * 255 + 1);
     return `rgb(${red}, ${green}, ${blue})`;
 }
-const generateRandomColorLittle = () => {
-    let red = Math.floor(Math.random() * 255 + 1);
-    let green = Math.floor(Math.random() * 255 + 1);
-    let blue = Math.floor(Math.random() * 255 + 1);
-    let randomNum = Math.random() * 0.5;
-    return `rgba(${red}, ${green}, ${blue}, ${randomNum})`;
-}
+
 const generateNewDiv = (perSideDivs) => {
     let divWidth = containerWidth / perSideDivs;
     let divHeight = containerWidth / perSideDivs;
@@ -34,7 +29,9 @@ container.addEventListener("mouseover", (e) => {
         e.target.style.backgroundColor = "#fff";
     }
     else {
-        e.target.style.backgroundColor = generateRandomColor();
+        divOpacity += 0.1;
+        e.target.style.opacity = divOpacity;
+        e.target.style.backgroundColor = "#000";
     }
 })
 
@@ -43,7 +40,6 @@ container.addEventListener("mouseout", (e) => {
 })
 
 askNumber.addEventListener("click", (e) => {
-    const askUserInput = document.createElement("confirm");
     let numberOfPerSide = prompt("What is the number of squares per side");
     while ((Number.isNaN(+numberOfPerSide) || +numberOfPerSide > 100 || +numberOfPerSide < 0) && numberOfPerSide !== null) {
         alert("The number is not we need, try again!");
