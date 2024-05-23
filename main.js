@@ -16,8 +16,14 @@ const generateRandomColor = () => {
     let blue = Math.floor(Math.random() * 255 + 1);
     return `rgb(${red}, ${green}, ${blue})`;
 }
+//When only container exists, the backgroundColor is #eee;
 container.addEventListener("mouseover", (e) => {
-    e.target.style.backgroundColor = generateRandomColor();
+    if (e.target === e.currentTarget) {
+        e.target.style.backgroundColor = "#eee";
+    }
+    else {
+        e.target.style.backgroundColor = generateRandomColor();
+    }
 })
 
 askNumber.addEventListener("click", (e) => {
@@ -32,6 +38,7 @@ askNumber.addEventListener("click", (e) => {
         perSide++;
     }
     // Clear the origin divs
-    
+    Array.from(e.target.parentNode.nextElementSibling.children).forEach(div => div.remove());
+
 
 })
